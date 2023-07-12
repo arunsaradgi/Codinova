@@ -3,32 +3,26 @@ import axios from "axios";
 import CryptoCard from "./CryptoCard";
 
 const Allcryptos = () => {
-  const [crytos, setCryptos] = useState([]);
+  const [coins, setCoins] = useState([]);
   const [icons, setIcons] = useState([]);
 
   useEffect(() => {
     axios
-      .get(
-        "https://rest.coinapi.io/v1/exchanges/apikey-FDAB8705-CEAA-4A23-8A5B-6CC30B8D44D9/"
-      )
+      .get("http://localhost:4500/crypto")
       .then(function (response) {
-        // console.log(response.data);
-        let sortedcryptos = response.data.sort((a, b) => {
-          return b.volume_1day_usd - a.volume_1day_usd;
-        });
-        setCryptos(sortedcryptos);
+        // console.log(response.data.cryptos);
+
+        setCoins(response.data.cryptos);
       })
       .catch(function (error) {
         console.log(error);
       });
 
     axios
-      .get(
-        "https://rest.coinapi.io/v1/exchanges/icons/32/apikey-FDAB8705-CEAA-4A23-8A5B-6CC30B8D44D9"
-      )
+      .get("http://localhost:4500/crypto/icons")
       .then(function (response) {
-        // console.log(response.data);
-        setIcons(response.data);
+        console.log(response.data.icons);
+        setIcons(response.data.icons);
       })
       .catch(function (error) {
         console.log(error);
@@ -48,7 +42,7 @@ const Allcryptos = () => {
           <h3>24H TRADE VOLUME</h3>
         </div>
         <hr />
-        {crytos?.map((ele, index) => (
+        {coins?.map((ele, index) => (
           <CryptoCard
             key={ele.exchange_id}
             icons={icons}

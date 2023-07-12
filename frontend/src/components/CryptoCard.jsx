@@ -9,6 +9,7 @@ const CryptoCard = ({ ele, index, icons }) => {
     );
   }, [ele]);
 
+  // console.log(presentIcon);
   return (
     <div>
       <div

@@ -1,13 +1,14 @@
 const express = require("express");
 const { connection } = require("./db.js");
+const { cryptoRouter } = require("./routes/crypto.routes.js");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use("/crypto", cryptoRouter);
 
 app.listen(4500, async () => {
   try {
