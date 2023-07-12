@@ -43,6 +43,7 @@ const Landing = () => {
         />
       </InputGroup>
       <br />
+
       <Allcryptos />
     </>
   );

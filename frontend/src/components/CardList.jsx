@@ -2,14 +2,23 @@ import React, { useState } from "react";
 import CryptoCard from "./CryptoCard";
 import { Button } from "@chakra-ui/react";
 
-const CardList = ({ coins, icons }) => {
+const CardList = ({ filteredCoins, coins, icons }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const coinsPerPage = 10;
-
-  const totalPages = Math.ceil(coins.length / coinsPerPage);
+  var totalPages;
+  if (filteredCoins.length != 0) {
+    totalPages = Math.ceil(filteredCoins.length / coinsPerPage);
+  } else {
+    totalPages = Math.ceil(coins.length / coinsPerPage);
+  }
   const indexOfLastCard = currentPage * coinsPerPage;
   const indexOfFirstCard = indexOfLastCard - coinsPerPage;
-  const currentcoins = coins.slice(indexOfFirstCard, indexOfLastCard);
+  var currentcoins;
+  if (filteredCoins.length != 0) {
+    currentcoins = filteredCoins.slice(indexOfFirstCard, indexOfLastCard);
+  } else {
+    currentcoins = coins.slice(indexOfFirstCard, indexOfLastCard);
+  }
 
   let number = indexOfFirstCard;
   const handlePrevious = () => {
@@ -26,7 +35,14 @@ const CardList = ({ coins, icons }) => {
         <CryptoCard key={index} number={number++} ele={ele} icons={icons} />
       ))}
 
-      <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          marginBottom: "50px",
+        }}
+      >
         <Button
           onClick={handlePrevious}
           isDisabled={currentPage === 1}
