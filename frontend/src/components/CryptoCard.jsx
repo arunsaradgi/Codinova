@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const CryptoCard = ({ ele, index, icons }) => {
+const CryptoCard = ({ ele, number, icons }) => {
   const [presentIcon, setPresentIcons] = useState({});
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const CryptoCard = ({ ele, index, icons }) => {
         }}
       >
         <div style={{ display: "flex" }}>
-          <div>{index + 1} </div>
+          <div>{number + 1} </div>
           <div
             style={{ margin: "auto", marginLeft: "20px", marginRight: "20px" }}
           >

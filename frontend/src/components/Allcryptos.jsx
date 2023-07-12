@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CryptoCard from "./CryptoCard";
-
+import CardList from "./CardList";
 const Allcryptos = () => {
   const [coins, setCoins] = useState([]);
   const [icons, setIcons] = useState([]);
@@ -42,14 +42,8 @@ const Allcryptos = () => {
           <h3>24H TRADE VOLUME</h3>
         </div>
         <hr />
-        {coins?.map((ele, index) => (
-          <CryptoCard
-            key={ele.exchange_id}
-            icons={icons}
-            ele={ele}
-            index={index}
-          />
-        ))}
+
+        <CardList coins={coins} icons={icons} />
       </div>
     </>
   );
