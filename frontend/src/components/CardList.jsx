@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CryptoCard from "./CryptoCard";
 import { Button } from "@chakra-ui/react";
 
@@ -25,7 +25,7 @@ const CardList = ({ filteredCoins, coins, icons }) => {
   useEffect(() => {
     setCurrentPage(1);
   }, [filteredCoins, coins]);
-  
+
   const handlePrevious = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
